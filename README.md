@@ -9,4 +9,5 @@
 
 ### +1
 
-- A bábu modellek rendelkezzenek collision (ütközés) -nel
+- A bábu modellek rendelkezzenek collision (ütközés) -nel.
+- Animáció a bábura amikor elindul.

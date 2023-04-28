@@ -1,7 +1,7 @@
 # Grafika Feladat
 ## Feladat megadása
-### Sakk tábal
-- Egy saktábbla létrehozása egyszerű bábukkal a megfelelő helyeken.
+### Sakk tábla
+- Egy saktábla létrehozása egyszerű bábukkal a megfelelő helyeken (mezőkön).
 - A bábuk legyenek mozgathatőak (nem feltétlenül a szabályok szerint).
 - Dupla kattintás esetén a bábu amire nézünk elindul előre.
 - Fényerősség legyen változtatható.

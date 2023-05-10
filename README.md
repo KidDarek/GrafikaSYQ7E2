@@ -2,6 +2,7 @@
 ## Feladat megadása
 ### Sakk tábla
 - Egy saktábla létrehozása egyszerű bábukkal a megfelelő helyeken (mezőkön).
+- Célkereszt a képernyő kozepén.
 - A bábuk legyenek mozgathatőak (nem feltétlenül a szabályok szerint).
 - Dupla kattintás esetén a bábu amire nézünk elindul előre.
 - Fényerősség legyen változtatható.

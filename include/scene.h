@@ -6,40 +6,44 @@
 
 #include <obj/model.h>
 
+typedef struct ModelData
+{
+    Model model;
+    GLuint texture_id;
+    vec3 positon;
+    vec3 rotation;
+} ModelData;
+
 typedef struct Scene
 {
-    Model cube;
-    Model modael2;
-    Model Duc;
+    ModelData *models;
     Material material;
-    GLuint texture_id;
-    GLuint texture_id2;
 } Scene;
 
 /**
  * Initialize the scene by loading models.
  */
-void init_scene(Scene* scene);
+void init_scene(Scene *scene);
 
 /**
  * Set the lighting of the scene.
  */
-void set_lighting();
+void set_lighting(float value);
 
 /**
  * Set the current material.
  */
-void set_material(const Material* material);
+void set_material(const Material *material);
 
 /**
  * Update the scene.
  */
-void update_scene(Scene* scene);
+void update_scene(Scene *scene);
 
 /**
  * Render the scene objects.
  */
-void render_scene(const Scene* scene);
+void render_scene(const Scene *scene);
 
 /**
  * Draw the origin of the world coordinate system.

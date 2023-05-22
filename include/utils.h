@@ -37,4 +37,6 @@ typedef struct Material
  */
 double degree_to_radian(double degree);
 
+void init_vec3(vec3 *vector, float x, float y, float z);
+
 #endif /* UTILS_H */

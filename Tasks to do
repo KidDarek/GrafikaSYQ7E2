@@ -6,3 +6,4 @@ make an info screen
 make the pieces clickable when crosshair is on it
 make the chess board
 make the camera move with the cursor ^v^
+scene->material.diffuse.blue = 0.0; Állítsd át 1 re te dufus

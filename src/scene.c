@@ -9,18 +9,18 @@ GLfloat matrix[16];
 
 void init_scene(Scene *scene)
 {
-    int row = 1;
+    float row = 1.3;
     scene->models = malloc(sizeof(ModelData) * 33);
     for (int i = 0; i < 16; i++)
     {
         if (i == 8)
         {
-            row += 1.2;
+            row += 1;
         }
         load_model(&(scene->models[i].model), "assets/models/paraszt.obj");
         scene->models[i].texture_id = load_texture("assets/textures/Brick.jpg");
         glBindTexture(GL_TEXTURE_2D, scene->models[i].texture_id);
-        init_vec3(&(scene->models[i].positon), row, (i % 8) + 0.4, 0);
+        init_vec3(&(scene->models[i].positon), row, (double)(i % 8) / 1.1 + 0.5, 0.82);
         init_vec3(&(scene->models[i].rotation), 0, 0, 0);
     }
     for (int i = 16; i < 32; i++)
@@ -32,7 +32,7 @@ void init_scene(Scene *scene)
         load_model(&(scene->models[i].model), "assets/models/paraszt.obj");
         scene->models[i].texture_id = load_texture("assets/textures/Brick.jpg");
         glBindTexture(GL_TEXTURE_2D, scene->models[i].texture_id);
-        init_vec3(&(scene->models[i].positon), row + 4.7, (i % 8) + 0.4, 0);
+        init_vec3(&(scene->models[i].positon), row + 4.4, (double)(i % 8) / 1.1 + 2.0, 0.82);
         init_vec3(&(scene->models[i].rotation), 0, 0, 180);
     }
     load_model(&(scene->models[32].model), "assets/models/table.obj");

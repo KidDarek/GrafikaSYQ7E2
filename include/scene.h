@@ -3,6 +3,7 @@
 
 #include "camera.h"
 #include "texture.h"
+#include "bounding_box.h"
 
 #include <obj/model.h>
 
@@ -12,6 +13,7 @@ typedef struct ModelData
     GLuint texture_id;
     vec3 positon;
     vec3 rotation;
+    Box box;
 } ModelData;
 
 typedef struct Scene

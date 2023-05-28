@@ -4,7 +4,7 @@
 
 #include <math.h>
 
-void init_camera(Camera* camera)
+void init_camera(Camera *camera)
 {
     camera->position.x = 4.0;
     camera->position.y = 0.0;
@@ -19,7 +19,7 @@ void init_camera(Camera* camera)
     camera->is_preview_visible = false;
 }
 
-void update_camera(Camera* camera, double time)
+void update_camera(Camera *camera, double time)
 {
     double angle;
     double side_angle;
@@ -33,7 +33,7 @@ void update_camera(Camera* camera, double time)
     camera->position.y += sin(side_angle) * camera->speed.x * time;
 }
 
-void set_view(const Camera* camera)
+void set_view(const Camera *camera)
 {
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
@@ -43,34 +43,38 @@ void set_view(const Camera* camera)
     glTranslatef(-camera->position.x, -camera->position.y, -camera->position.z);
 }
 
-void rotate_camera(Camera* camera, double horizontal, double vertical)
+void rotate_camera(Camera *camera, double horizontal, double vertical)
 {
     camera->rotation.z += horizontal;
     camera->rotation.x += vertical;
 
-    if (camera->rotation.z < 0) {
+    if (camera->rotation.z < 0)
+    {
         camera->rotation.z += 360.0;
     }
 
-    if (camera->rotation.z > 360.0) {
+    if (camera->rotation.z > 360.0)
+    {
         camera->rotation.z -= 360.0;
     }
 
-    if (camera->rotation.x < 0) {
+    if (camera->rotation.x < 0)
+    {
         camera->rotation.x += 360.0;
     }
 
-    if (camera->rotation.x > 360.0) {
+    if (camera->rotation.x > 360.0)
+    {
         camera->rotation.x -= 360.0;
     }
 }
 
-void set_camera_speed(Camera* camera, double speed)
+void set_camera_speed(Camera *camera, double speed)
 {
     camera->speed.y = speed;
 }
 
-void set_camera_side_speed(Camera* camera, double speed)
+void set_camera_side_speed(Camera *camera, double speed)
 {
     camera->speed.x = speed;
 }

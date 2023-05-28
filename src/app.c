@@ -143,6 +143,16 @@ void handle_app_events(App *app)
             case SDL_SCANCODE_I:
                 set_lighting(-0.1);
                 break;
+            case SDL_SCANCODE_F:
+                for (int i = 0; i < 33; i++)
+                {
+                    if (point_is_in_box(app->camera.position, app->scene.models[i].bounding_box))
+                    {
+                        enter_focus_mode(&(app->camera), &(app->scene), i, &object);
+                        break;
+                    }
+                }
+                break;
             default:
                 break;
             }

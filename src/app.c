@@ -143,16 +143,6 @@ void handle_app_events(App *app)
             case SDL_SCANCODE_I:
                 set_lighting(-0.1);
                 break;
-            case SDL_SCANCODE_F:
-                for (int i = 0; i < 33; i++)
-                {
-                    if (point_is_in_box(app->camera.position, app->scene.models[i].bounding_box))
-                    {
-                        enter_focus_mode(&(app->camera), &(app->scene), i, &object);
-                        break;
-                    }
-                }
-                break;
             default:
                 break;
             }
@@ -174,6 +164,7 @@ void handle_app_events(App *app)
             break;
         case SDL_MOUSEBUTTONDOWN:
             is_mouse_down = true;
+            ShootRay(app, 2);
             break;
         case SDL_MOUSEMOTION:
             SDL_GetMouseState(&x, &y);
@@ -231,6 +222,28 @@ void render_app(App *app)
     }
 
     SDL_GL_SwapWindow(app->window);
+}
+
+void ShootRay(App *app, int length)
+{
+    double angle = degree_to_radian(app->camera.rotation.z);
+    vec3 point;
+    init_vec3(&point, app->camera.position.x, app->camera.position.y, app->camera.position.z);
+    for (float i = 0; i < length; i += 0.08)
+    {
+
+        point.x += cos(angle) * app->camera.position.y;
+        point.y += sin(angle) * app->camera.position.y;
+        for (int j = 0; j < 32; j++)
+        {
+
+            if (point_is_in_box(point, &app->scene.models[j].box))
+            {
+                printf("%d\t", j);
+            }
+        }
+    }
+    printf("%f %f %f\t", app->camera.position.x, app->camera.position.y, app->camera.position.z);
 }
 
 void destroy_app(App *app)

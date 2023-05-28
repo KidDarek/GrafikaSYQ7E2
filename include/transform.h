@@ -29,22 +29,22 @@ void rotate_transform_v(Transform *transform, vec3 vec);
 /*
     Move the transfrom in the direction, as much as the length of the direction and update the bounding box
 */
-void translate_transform(Transform *transform, float x, float y, float z, Box *bounding_box);
+void translate_transform(Transform *transform, float x, float y, float z, BoundingBox *bounding_box);
 
 /*
     Move the transfrom in the direction, as much as the length of the direction and update the bounding box
 */
-void translate_transform_v(Transform *transform, vec3 vec, Box *bounding_box);
+void translate_transform_v(Transform *transform, vec3 vec, BoundingBox *bounding_box);
 
 /*
     Override the transform's position and update the bounding box
 */
-void set_transform_position(Transform *transform, float x, float y, float z, Box *bounding_box);
+void set_transform_position(Transform *transform, float x, float y, float z, BoundingBox *bounding_box);
 
 /*
     Override the transform's position and update the bounding box
 */
-void set_transform_position_v(Transform *transform, vec3 vec, Box *bounding_box);
+void set_transform_position_v(Transform *transform, vec3 vec, BoundingBox *bounding_box);
 
 /*
     Override the transform's rotation

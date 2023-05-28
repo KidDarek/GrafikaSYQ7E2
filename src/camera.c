@@ -4,6 +4,10 @@
 
 #include <math.h>
 
+#include <stdio.h>
+
+#include <stdlib.h>
+
 void init_camera(Camera *camera)
 {
     camera->position.x = 4.0;

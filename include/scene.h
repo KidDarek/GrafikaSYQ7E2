@@ -13,7 +13,7 @@ typedef struct ModelData
     GLuint texture_id;
     vec3 positon;
     vec3 rotation;
-    Box box;
+    BoundingBox box;
 } ModelData;
 
 typedef struct Scene

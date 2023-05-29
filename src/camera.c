@@ -15,7 +15,7 @@ void init_camera(Camera *camera)
     camera->position.z = 1.0;
     camera->rotation.x = 0.0;
     camera->rotation.y = 0.0;
-    camera->rotation.z = 180.0;
+    camera->rotation.z = 90.0;
     camera->speed.x = 0.0;
     camera->speed.y = 0.0;
     camera->speed.z = 0.0;

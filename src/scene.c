@@ -23,6 +23,7 @@ void init_scene(Scene *scene)
         glBindTexture(GL_TEXTURE_2D, scene->models[i].texture_id);
         init_vec3(&(scene->models[i].positon), row, (double)(i % 8) / 1.1 + 0.5, 0.82);
         init_vec3(&(scene->models[i].rotation), 0, 0, 0);
+        scene->models[i].Index = i;
     }
     for (int i = 16; i < 32; i++)
     {
@@ -35,17 +36,20 @@ void init_scene(Scene *scene)
         glBindTexture(GL_TEXTURE_2D, scene->models[i].texture_id);
         init_vec3(&(scene->models[i].positon), row + 4.4, (double)(i % 8) / 1.1 + 2.0, 0.82);
         init_vec3(&(scene->models[i].rotation), 0, 0, 180);
+        scene->models[i].Index = i;
     }
     load_model(&(scene->models[32].model), "assets/models/table.obj");
     scene->models[32].texture_id = load_texture("assets/textures/BoardColor.jpg");
     glBindTexture(GL_TEXTURE_2D, scene->models[32].texture_id);
     init_vec3(&(scene->models[32].positon), 4.5, 4.5, -0.6);
     init_vec3(&(scene->models[32].rotation), 0, 0, 0);
+    scene->models[32].Index = 32;
 
     for (int i = 0; i < 32; i++)
     {
         init_bounding_box(&scene->models[i].box, &(scene->models[i].model));
         update_bounding_box(&scene->models[i].box, scene->models[i].positon);
+        printf("%f %f %f\n", scene->models[i].positon.x, scene->models[i].positon.y, scene->models[i].positon.z);
     }
 
     scene->material.ambient.red = 0.0;

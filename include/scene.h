@@ -14,6 +14,7 @@ typedef struct ModelData
     vec3 positon;
     vec3 rotation;
     BoundingBox box;
+    int Index;
 } ModelData;
 
 typedef struct Scene

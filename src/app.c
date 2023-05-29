@@ -137,6 +137,9 @@ void handle_app_events(App *app)
                 SDL_SetRelativeMouseMode(SDL_TRUE);
                 SDL_ShowCursor(SDL_DISABLE);
                 break;
+            case SDL_SCANCODE_F:
+                ShootRay2(app);
+                break;
             case SDL_SCANCODE_U:
                 set_lighting(0.1);
                 break;
@@ -164,7 +167,7 @@ void handle_app_events(App *app)
             break;
         case SDL_MOUSEBUTTONDOWN:
             is_mouse_down = true;
-            ShootRay(app, 2);
+            ShootRay(app, 5);
             break;
         case SDL_MOUSEMOTION:
             SDL_GetMouseState(&x, &y);
@@ -227,23 +230,55 @@ void render_app(App *app)
 void ShootRay(App *app, int length)
 {
     double angle = degree_to_radian(app->camera.rotation.z);
+    double side_angle = degree_to_radian(app->camera.rotation.z + 90.0);
     vec3 point;
+    vec3 point2;
+    vec3 ray;
+    int h = 20 * length;
     init_vec3(&point, app->camera.position.x, app->camera.position.y, app->camera.position.z);
-    for (float i = 0; i < length; i += 0.08)
+    point2.x = cos(angle);
+    point2.y = sin(angle);
+    ray.x = point2.x * length;
+    ray.x /= h;
+    ray.z = app->camera.position.z;
+    ray.y = point2.y * length;
+    ray.y /= h;
+    float inc = (float)1 / 20;
+    int run = 0;
+    for (float i = 0; i < h; i++)
     {
-
-        point.x += cos(angle) * app->camera.position.y;
-        point.y += sin(angle) * app->camera.position.y;
+        point.x += ray.x * i;
+        point.y += ray.y * i;
         for (int j = 0; j < 32; j++)
         {
 
             if (point_is_in_box(point, &app->scene.models[j].box))
             {
-                printf("%d\t", j);
+                printf("\n%d %d", app->scene.models[j].Index, j);
+                app->scene.models[j].positon.z = 100;
+                update_bounding_box(&app->scene.models[j].box, app->scene.models[j].positon);
+                return;
             }
         }
+        point.x = app->camera.position.x;
+        point.y = app->camera.position.y;
+
+        // printf("%f %f %f\t", app->camera.position.x, app->camera.position.y, app->camera.position.z);
     }
-    printf("%f %f %f\t", app->camera.position.x, app->camera.position.y, app->camera.position.z);
+}
+
+void ShootRay2(App *app)
+{
+
+    for (int j = 0; j < 32; j++)
+    {
+
+        if (point_is_in_box(app->camera.position, &app->scene.models[j].box))
+        {
+            app->scene.models[j].positon.z = 100;
+        }
+    }
+    // printf("%f %f %f\t", app->camera.position.x, app->camera.position.y, app->camera.position.z);
 }
 
 void destroy_app(App *app)

@@ -41,7 +41,7 @@ void set_material(const Material *material);
 /**
  * Update the scene.
  */
-void update_scene(Scene *scene);
+void update_scene(Scene *scene, int index, float x, float y);
 
 /**
  * Render the scene objects.
@@ -52,5 +52,10 @@ void render_scene(const Scene *scene);
  * Draw the origin of the world coordinate system.
  */
 void draw_origin();
+
+/*
+re-render an object
+*/
+void re_render_obj(Scene *scene, int index, float x, float y);
 
 #endif /* SCENE_H */

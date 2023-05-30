@@ -2,6 +2,10 @@
 
 #include <SDL2/SDL_image.h>
 
+int anim_on = -1;
+float animx;
+float animy;
+
 void init_app(App *app, int width, int height)
 {
     int error_code;
@@ -137,14 +141,17 @@ void handle_app_events(App *app)
                 SDL_SetRelativeMouseMode(SDL_TRUE);
                 SDL_ShowCursor(SDL_DISABLE);
                 break;
-            case SDL_SCANCODE_F:
-                ShootRay2(app);
-                break;
             case SDL_SCANCODE_U:
                 set_lighting(0.1);
                 break;
             case SDL_SCANCODE_I:
                 set_lighting(-0.1);
+                break;
+            case SDL_SCANCODE_F1:
+                app->camera.is_preview_visible = true;
+                break;
+            case SDL_SCANCODE_F2:
+                app->camera.is_preview_visible = false;
                 break;
             default:
                 break;
@@ -206,7 +213,7 @@ void update_app(App *app)
     app->uptime = current_time;
 
     update_camera(&(app->camera), elapsed_time);
-    update_scene(&(app->scene));
+    update_scene(&(app->scene), anim_on, animx, animy);
 }
 
 void render_app(App *app)
@@ -254,31 +261,18 @@ void ShootRay(App *app, int length)
 
             if (point_is_in_box(point, &app->scene.models[j].box))
             {
-                printf("\n%d %d", app->scene.models[j].Index, j);
-                app->scene.models[j].positon.z = 100;
+                app->scene.models[j].positon.z = 1;
+                anim_on = j;
+                animx = point.x * ray.x;
+                animy = point.y * ray.y;
+
                 update_bounding_box(&app->scene.models[j].box, app->scene.models[j].positon);
                 return;
             }
         }
         point.x = app->camera.position.x;
         point.y = app->camera.position.y;
-
-        // printf("%f %f %f\t", app->camera.position.x, app->camera.position.y, app->camera.position.z);
     }
-}
-
-void ShootRay2(App *app)
-{
-
-    for (int j = 0; j < 32; j++)
-    {
-
-        if (point_is_in_box(app->camera.position, &app->scene.models[j].box))
-        {
-            app->scene.models[j].positon.z = 100;
-        }
-    }
-    // printf("%f %f %f\t", app->camera.position.x, app->camera.position.y, app->camera.position.z);
 }
 
 void destroy_app(App *app)

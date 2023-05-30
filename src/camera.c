@@ -93,16 +93,16 @@ void show_texture_preview()
     glLoadIdentity();
 
     glColor3f(1, 1, 1);
-
+    glBindTexture(GL_TEXTURE_2D, load_texture("assets/textures/Slide1.jpg"));
     glBegin(GL_QUADS);
     glTexCoord2f(0, 0);
-    glVertex3f(-1, 1, -3);
+    glVertex3f(-2.2, 1.8, -3);
     glTexCoord2f(1, 0);
-    glVertex3f(1, 1, -3);
+    glVertex3f(2.2, 1.8, -3);
     glTexCoord2f(1, 1);
-    glVertex3f(1, -1, -3);
+    glVertex3f(2.2, -1.8, -3);
     glTexCoord2f(0, 1);
-    glVertex3f(-1, -1, -3);
+    glVertex3f(-2.2, -1.8, -3);
     glEnd();
 
     glDisable(GL_COLOR_MATERIAL);

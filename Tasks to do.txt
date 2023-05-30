@@ -1,8 +1,8 @@
 make a crosshair / Middle point of the camera ^v^
-make the chess pieces
-make the animation
+make the chess pieces ^v^
+make the animation ^v^
 make the lighting changeable ^v^
-make an info screen
+make an info screen ^v^
 make the pieces clickable when crosshair is on it ^v^
 make the chess board ^v^
 make the camera move with the cursor ^v^
